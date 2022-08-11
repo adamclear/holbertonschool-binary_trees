@@ -51,5 +51,6 @@ int bst_tree(const binary_tree_t *tree, int min, int max);
 bst_t *bst_insert(bst_t **tree, int value);
 int bst_search(bst_t *tree, int value);
 bst_t *bst_insert_here(bst_t *tree, bst_t *node);
+bst_t *array_to_bst(int *array, size_t size);
 
 #endif
