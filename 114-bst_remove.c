@@ -18,10 +18,7 @@ bst_t *bst_remove(bst_t *root, int value)
 	if (!delete_node)
 		return (root);
 
-	if (!delete_node->parent)
-	{
-		
-	}
+	return (root);
 }
 
 /**
