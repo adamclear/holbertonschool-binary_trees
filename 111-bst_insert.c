@@ -28,7 +28,7 @@ bst_t *bst_insert(bst_t **tree, int value)
 		return (new_node);
 	}
 
-	if (bst_search((*tree), value))
+	if (bst_find((*tree), value))
 	{
 		free(new_node);
 		return (NULL);
@@ -43,7 +43,7 @@ bst_t *bst_insert(bst_t **tree, int value)
  * @value: Value to find.
  * Return: 0 if value not found, 1 if it is.
  */
-int bst_search(bst_t *tree, int value)
+int bst_find(bst_t *tree, int value)
 {
 	if (!tree)
 		return (0);
@@ -51,7 +51,7 @@ int bst_search(bst_t *tree, int value)
 	if (tree->n == value)
 		return (1);
 
-	return (bst_search(tree->left, value) && bst_search(tree->right, value));
+	return (bst_find(tree->left, value) && bst_find(tree->right, value));
 }
 
 /**
