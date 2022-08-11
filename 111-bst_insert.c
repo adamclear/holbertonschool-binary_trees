@@ -27,13 +27,13 @@ bst_t *bst_insert(bst_t **tree, int value)
 		*tree = new_node;
 		return (new_node);
 	}
-	
+
 	if (bst_search((*tree), value))
 	{
 		free(new_node);
 		return (NULL);
 	}
-	
+
 	return (bst_insert_here(*tree, new_node));
 }
 
