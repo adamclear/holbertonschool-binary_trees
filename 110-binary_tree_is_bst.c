@@ -6,10 +6,12 @@
  */
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
-	int root_num = tree->n;
+	int root_num = 0;
 
 	if (!tree)
 		return (0);
+
+	root_num = tree->n;
 
 	return (bst_tree_left(tree->left, root_num) &&
 			bst_tree_right(tree->right, root_num));
