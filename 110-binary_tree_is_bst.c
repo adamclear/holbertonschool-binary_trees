@@ -26,9 +26,9 @@ int bst_tree_left(const binary_tree_t *tree, int root_num)
 	if (!tree)
 		return (1);
 
-	if (tree->left && (tree->left->n > tree->n || tree->left->n > root_num))
+	if (tree->left && (tree->left->n >= tree->n || tree->left->n >= root_num))
 		return (0);
-	if (tree->right && (tree->right->n < tree->n || tree->right->n > root_num))
+	if (tree->right && (tree->right->n <= tree->n || tree->right->n >= root_num))
 		return (0);
 
 	return (bst_tree_left(tree->left, root_num) &&
@@ -46,9 +46,9 @@ int bst_tree_right(const binary_tree_t *tree, int root_num)
 	if (!tree)
 		return (1);
 
-	if (tree->left && (tree->left->n > tree->n || tree->left->n < root_num))
+	if (tree->left && (tree->left->n >= tree->n || tree->left->n <= root_num))
 		return (0);
-	if (tree->right && (tree->right->n < tree->n || tree->right->n < root_num))
+	if (tree->right && (tree->right->n <= tree->n || tree->right->n <= root_num))
 		return (0);
 
 	return (bst_tree_right(tree->left, root_num) &&
