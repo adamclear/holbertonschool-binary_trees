@@ -8,7 +8,6 @@
 bst_t *bst_remove(bst_t *root, int value)
 {
 	bst_t *delete_node;
-	int position, children;
 
 	if (!root)
 		return (NULL);
@@ -35,6 +34,13 @@ bst_t *bst_search(const bst_t *tree, int value)
 	return (bst_search_recursive((bst_t *)tree, value));
 }
 
+
+/**
+ * bst_search_recursive - Goes down the tree looking for a value match
+ * @tree: Pointer to the root of the tree.
+ * @value: The value to find.
+ * Return: Pointer to the matching node, or NULL
+ */
 bst_t *bst_search_recursive(bst_t *tree, int value)
 {
 	bst_t *left_node, *right_node;
