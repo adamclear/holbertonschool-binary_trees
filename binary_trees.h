@@ -58,5 +58,6 @@ bst_t *bst_search_recursive(bst_t *tree, int value);
 bst_t *bst_remove(bst_t *root, int value);
 bst_t *bst_remove_node(bst_t *delete, bst_t *root);
 bst_t *fall_right(bst_t *node);
+bst_t *fall_left(bst_t *node);
 
 #endif

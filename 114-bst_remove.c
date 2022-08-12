@@ -7,7 +7,6 @@
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
-	printf("Made it to bst_remove!\n");
 	bst_t *delete_node;
 
 	if (!root)
@@ -19,7 +18,6 @@ bst_t *bst_remove(bst_t *root, int value)
 		return (root);
 
 	root = bst_remove_node(delete_node, root);
-	printf("Final root: %d\n", root->n);
 	return (root);
 }
 
@@ -71,41 +69,39 @@ bst_t *bst_search_recursive(bst_t *tree, int value)
  */
 bst_t *bst_remove_node(bst_t *delete, bst_t *root)
 {
-	printf("Made it to bst_remove_node!\n");
-	bst_t *fall_node = NULL, *tmp_node = NULL;
+	bst_t *fall_right_n = NULL, *fall_left_n = NULL, *tmp_node = NULL;
 
 	if (!delete || !root)
 		return (NULL);
-
-	if (delete->parent)
-		tmp_node = delete->parent;
-	else
-
 	if (delete->right)
 	{
 		tmp_node = delete->right;
 		if (tmp_node->left)
 		{
-			fall_node = fall_right(tmp_node->left);
+			fall_right_n = fall_right(tmp_node->left);
+			fall_left_n = fall_left(tmp_node->left);
 			tmp_node = tmp_node->left;
-			delete->right->parent = fall_node;
-			fall_node->right = delete->right;
+			delete->right->parent = fall_right_n;
+			fall_right_n->right = delete->right;
+			delete->right->left = NULL;
 		}
 		if (!delete->parent)
 		{
-			if (delete->left)
-			tmp_node->left = delete->left;
 			root = tmp_node;
+			if (delete->left)
+			{
+				fall_left_n->left = delete->left;
+				delete->left->parent = root;
+			}
 		}
-		else
+		else if (delete->parent->left == delete)
 		{
-			tmp_node->parent = delete->parent;
-			delete->parent->right = tmp_node;
+			delete->parent->left = tmp_node;
+			tmp_node->right = delete->right;
+			delete->right->parent = tmp_node;
+			tmp_node->left = delete->left;
 		}
 		free(delete);
-		printf("Root: %d\n", root->n);
-		printf("Root->right:%d\n", root->right->n);
-		printf("Root->left:%d\n", root->left->n);
 		return (root);
 	}
 	else if (delete->left)
@@ -115,11 +111,9 @@ bst_t *bst_remove_node(bst_t *delete, bst_t *root)
 		else
 			delete->left->parent = delete->parent;
 		free(delete);
-		printf("%d", root->n);
 		return (root);
 	}
 	free(delete);
-	printf("%d", root->n);
 	return (root);
 }
 
@@ -132,11 +126,30 @@ bst_t *fall_right(bst_t *node)
 {
 	if (!node)
 		return (NULL);
-	
+
 	if (node->right)
 	{
 		node = node->right;
 		return (fall_right(node));
+	}
+
+	return (node);
+}
+
+/**
+ * fall_left - Finds the furthest-left node in the given BST.
+ * @node: Pointer to start node.
+ * Return: Pointer to the final node.
+ */
+bst_t *fall_left(bst_t *node)
+{
+	if (!node)
+		return (NULL);
+
+	if (node->left)
+	{
+		node = node->left;
+		return (fall_left(node));
 	}
 
 	return (node);
