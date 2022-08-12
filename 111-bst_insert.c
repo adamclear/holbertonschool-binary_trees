@@ -38,7 +38,7 @@ bst_t *bst_insert(bst_t **tree, int value)
 }
 
 /**
- * bst_search - Searches a BST for a value.
+ * bst_find - Searches a BST for a value.
  * @tree: Tree to be searched.
  * @value: Value to find.
  * Return: 0 if value not found, 1 if it is.
