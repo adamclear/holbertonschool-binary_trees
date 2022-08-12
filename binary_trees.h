@@ -52,6 +52,7 @@ bst_t *bst_insert(bst_t **tree, int value);
 int bst_find(bst_t *tree, int value);
 bst_t *bst_insert_here(bst_t *tree, bst_t *node);
 bst_t *array_to_bst(int *array, size_t size);
+void bst_tree_delete(binary_tree_t *tree);
 bst_t *bst_search(const bst_t *tree, int value);
 bst_t *bst_search_recursive(bst_t *tree, int value);
 bst_t *bst_remove(bst_t *root, int value);
